@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Object</h1>
+
+  <p></p>
+
+
+
+  <script>
+    // const Person = {
+    //   name: '일분이',
+    //   age: 10,
+    //   introduce: function () {
+    //     console.log('안녕, 나 일분')
+    //   }
+    // };
+    // console.log(Person.name);
+    // Person.introduce();
+
+    // const Person2 = {
+    //   name: '이분이',
+    //   age: 10,
+    //   introduce: function () {
+    //     console.log('안녕, 나 이분')
+    //   }
+    // };
+    // console.log(Person2.name);
+    // Person2.introduce();
+
+    //생성자(constructor)
+
+    function Person(nickname, age) {
+      this.nickname = nickname;
+      this.age = age;
+    }
+    // 공통인 부분을 만들 때
+    Person.prototype.introduce = function () {
+      console.log('안녕' + this.nickname + ' d ' + this.age);
+    }
+
+    // 공통인 부분을 여러개 추가할 때
+    // Person.prototype ={
+    //   constructor: Person,
+    //   //필요한 거 추가
+    // }
+
+    const person1 = new Person('일분이', 10);
+    const person2 = new Person('이분이', 2);
+
+    person1.introduce();
+    person2.introduce();
+  </script>
+</body>
+
+</html>
