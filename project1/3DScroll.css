@@ -1,0 +1,403 @@
+@-webkit-keyframes ani-head {
+  to {
+    transform: rotateX(-10deg);
+  }
+}
+@keyframes ani-head {
+  to {
+    transform: rotateX(-10deg);
+  }
+}
+@-webkit-keyframes ani-running-leg {
+  from {
+    transform: rotateX(-30deg);
+  }
+  to {
+    transform: rotateX(30deg);
+  }
+}
+@keyframes ani-running-leg {
+  from {
+    transform: rotateX(-30deg);
+  }
+  to {
+    transform: rotateX(30deg);
+  }
+}
+@-webkit-keyframes ani-running-arm {
+  from {
+    transform: rotateY(30deg);
+  }
+  to {
+    transform: rotateY(-30deg);
+  }
+}
+@keyframes ani-running-arm {
+  from {
+    transform: rotateY(30deg);
+  }
+  to {
+    transform: rotateY(-30deg);
+  }
+}
+body {
+  height: 500vw;
+  font-family: "Apple SD Gothic Neo", "Roboto", "Noto Sans KR", NanumGothic, "Malgun Gothic", sans-serif;
+  -webkit-overflow-scrolling: touch;
+  color: #555;
+  background-color: #fff000;
+}
+
+.world {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  perspective: 1000px;
+}
+
+.stage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  transform-style: preserve-3d;
+}
+
+.house {
+  width: 100vw;
+  height: 100vh;
+  transform: translateZ(-490vw);
+  transform-style: preserve-3d;
+}
+
+.wall {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.wall-left {
+  left: -500vw;
+  width: 1000vw;
+  background-color: #f8f8f8;
+  transform: rotateY(90deg);
+}
+
+.wall-right {
+  left: -400vw;
+  width: 1000vw;
+  background-color: #f8f8f8;
+  transform: rotateY(90deg);
+}
+
+.wall-front-a {
+  transform: translateZ(300vw);
+}
+
+.wall-front-b {
+  transform: translateZ(50vw);
+}
+
+.wall-front-c {
+  transform: translateZ(-200vw);
+}
+
+.wall-front-d {
+  transform: translateZ(-500vw);
+}
+
+.wall-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.wall-title {
+  font-size: 5rem;
+}
+
+.progress-bar-con {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 5px;
+  background-color: #555;
+  z-index: 1000;
+}
+
+.progress-bar {
+  width: 0;
+  height: 100%;
+  background-color: #00a8ff;
+  z-index: 1000;
+}
+
+.character {
+  position: absolute;
+  left: 12%;
+  bottom: 5%;
+  width: 10vw;
+  height: 15.58vw;
+  transform-style: preserve-3d;
+}
+
+.character[data-direction=forward] {
+  transform: rotateY(180deg);
+}
+
+.character[data-direction=backward] {
+  transform: rotateY(0deg);
+}
+
+.character[data-direction=left] {
+  transform: rotateY(-90deg);
+}
+
+.character[data-direction=right] {
+  transform: rotateY(90deg);
+}
+
+.character-face-con {
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: 1s;
+}
+
+.character-face {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: cover;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.character-face.face-back {
+  transform: rotateY(180deg);
+}
+
+.character-head {
+  left: 4.9065420561%;
+  top: 0;
+  z-index: 60;
+  width: 89.953271028%;
+  height: 48.5757121439%;
+  transform-origin: center bottom;
+  -webkit-animation: ani-head 0.6s infinite alternate cubic-bezier(0.46, 0.18, 0.66, 0.93);
+          animation: ani-head 0.6s infinite alternate cubic-bezier(0.46, 0.18, 0.66, 0.93);
+}
+
+.character-head-face.face-front {
+  background-image: url("images/ilbuni_head_front.png");
+}
+
+.character-head-face.face-back {
+  background-image: url("images/ilbuni_head_back.png");
+}
+
+.character-torso {
+  left: 24.2990654206%;
+  top: 48.5007496252%;
+  z-index: 50;
+  width: 50%;
+  height: 28.8605697151%;
+  transform-origin: center center;
+}
+
+.character-torso-face.face-front {
+  background-image: url("images/ilbuni_body_front.png");
+}
+
+.character-torso-face.face-back {
+  background-image: url("images/ilbuni_body_back.png");
+}
+
+.character-arm-right {
+  left: 0;
+  top: 48.5757121439%;
+  width: 28.5046728972%;
+  height: 23.0134932534%;
+  transform-origin: right top;
+}
+
+.character-arm-right .face-front {
+  background-image: url("images/ilbuni_arm_0.png");
+}
+
+.character-arm-right .face-back {
+  background-image: url("images/ilbuni_arm_1.png");
+}
+
+.character-arm-left {
+  left: 70.0934579439%;
+  top: 48.5757121439%;
+  width: 28.5046728972%;
+  height: 23.0134932534%;
+  transform-origin: left top;
+}
+
+.character-arm-left .face-front {
+  background-image: url("images/ilbuni_arm_1.png");
+}
+
+.character-arm-left .face-back {
+  background-image: url("images/ilbuni_arm_0.png");
+}
+
+.character-leg-right {
+  left: 23.3644859813%;
+  top: 77.2863568216%;
+  width: 26.8691588785%;
+  height: 22.4887556222%;
+  transform-origin: center top;
+}
+
+.character-leg-right .face-front {
+  background-image: url("images/ilbuni_leg_0.png");
+}
+
+.character-leg-right .face-back {
+  background-image: url("images/ilbuni_leg_1.png");
+}
+
+.character-leg-left {
+  left: 48.3644859813%;
+  top: 77.2863568216%;
+  width: 26.8691588785%;
+  height: 22.4887556222%;
+  transform-origin: center top;
+}
+
+.character-leg-left .face-front {
+  background-image: url("images/ilbuni_leg_1.png");
+}
+
+.character-leg-left .face-back {
+  background-image: url("images/ilbuni_leg_0.png");
+}
+
+.character.running .character-leg-right {
+  -webkit-animation: ani-running-leg 0.2s alternate infinite linear;
+          animation: ani-running-leg 0.2s alternate infinite linear;
+}
+
+.character.running .character-leg-left {
+  animation: ani-running-leg 0.2s alternate-reverse infinite linear;
+}
+
+.character.running .character-arm {
+  -webkit-animation: ani-running-arm 0.2s alternate infinite linear;
+          animation: ani-running-arm 0.2s alternate infinite linear;
+}
+
+body[data-char=ragirl] .character {
+  width: 12vw;
+  height: 16.962vw;
+}
+
+body[data-char=ragirl] .character-head {
+  left: 2.4261603376%;
+  width: 97.0464135021%;
+  height: 55.9701492537%;
+}
+
+body[data-char=ragirl] .character-head-face.face-front {
+  background-image: url("images/ragirl_head_front.png");
+}
+
+body[data-char=ragirl] .character-head-face.face-back {
+  background-image: url("images/ragirl_head_back.png");
+}
+
+body[data-char=ragirl] .character-torso {
+  left: 28.7974683544%;
+  top: 47.0149253731%;
+  z-index: 50;
+  width: 42.4050632911%;
+  height: 33.1343283582%;
+  transform-origin: center center;
+}
+
+body[data-char=ragirl] .character-torso-face.face-front {
+  background-image: url("images/ragirl_body_front.png");
+}
+
+body[data-char=ragirl] .character-torso-face.face-back {
+  background-image: url("images/ragirl_body_back.png");
+}
+
+body[data-char=ragirl] .character-arm-right {
+  left: 14.135021097%;
+  top: 52.9104477612%;
+  width: 14.5569620253%;
+  height: 22.3880597015%;
+  transform-origin: right top;
+}
+
+body[data-char=ragirl] .character-arm-right .face-front {
+  background-image: url("images/ragirl_arm_0_front.png");
+}
+
+body[data-char=ragirl] .character-arm-right .face-back {
+  background-image: url("images/ragirl_arm_1_back.png");
+}
+
+body[data-char=ragirl] .character-arm-left {
+  left: 71.2025316456%;
+  top: 52.9104477612%;
+  width: 14.5569620253%;
+  height: 22.3880597015%;
+  transform-origin: left top;
+}
+
+body[data-char=ragirl] .character-arm-left .face-front {
+  background-image: url("images/ragirl_arm_1_front.png");
+}
+
+body[data-char=ragirl] .character-arm-left .face-back {
+  background-image: url("images/ragirl_arm_0_back.png");
+}
+
+body[data-char=ragirl] .character-leg-right {
+  left: 30.5907172996%;
+  top: 80.223880597%;
+  width: 19.6202531646%;
+  height: 19.7014925373%;
+  transform-origin: center top;
+}
+
+body[data-char=ragirl] .character-leg-right .face-front {
+  background-image: url("images/ragirl_leg_0.png");
+}
+
+body[data-char=ragirl] .character-leg-right .face-back {
+  background-image: url("images/ragirl_leg_1.png");
+}
+
+body[data-char=ragirl] .character-leg-left {
+  left: 50%;
+  top: 80.223880597%;
+  width: 19.6202531646%;
+  height: 19.7014925373%;
+  transform-origin: center top;
+}
+
+body[data-char=ragirl] .character-leg-left .face-front {
+  background-image: url("images/ragirl_leg_1.png");
+}
+
+body[data-char=ragirl] .character-leg-left .face-back {
+  background-image: url("images/ragirl_leg_0.png");
+}/*# sourceMappingURL=3DScroll.css.map */
