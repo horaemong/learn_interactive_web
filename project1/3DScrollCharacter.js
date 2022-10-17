@@ -33,6 +33,8 @@ function Character(info) {
   this.mainElem.style.left = info.xPos + '%';
   this.scrollState = false;
   this.lastScrollTop = 0;
+  this.xPos = info.xPos
+  this.speed = 1;
   this.init();
 }
 
@@ -64,7 +66,19 @@ Character.prototype = {
     });
 
     window.addEventListener('keydown', (e) => {
-      if (e.ke)
-    })
+      if (e.keyCode == 37) {
+        self.mainElem.setAttribute('data-direction', 'left');
+        self.mainElem.classList.add('running');
+        self.xPos -= self.speed;
+        self.mainElem.style.left = self.xPos + '%';
+      } else if (e.keyCode == 39) {
+        self.mainElem.setAttribute('data-direction', 'right');
+        self.mainElem.classList.add('running');
+      }
+    });
+
+    window.addEventListener('keyup', (e) => {
+      self.mainElem.classList.remove('running');
+    });
   }
 }
