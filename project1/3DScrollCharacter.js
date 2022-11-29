@@ -1,4 +1,5 @@
 function Character(info) {
+  console.log(this);
   this.mainElem = document.createElement('div');
   this.mainElem.classList.add('character');
   this.mainElem.innerHTML = `                
